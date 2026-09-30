@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <link rel="stylesheet" href="popup.css" />
+</head>
+<body>
+  <header>
+    <h1>Stream Saver</h1>
+    <div class="row">
+      <button id="merge" class="ghost" title="Merge a video file and an audio file into one MP4">Merge files</button>
+      <button id="clear" class="ghost" title="Clear list">Clear</button>
+    </div>
+  </header>
+  <main id="list"></main>
+  <p id="empty" hidden>No videos detected yet.<br />Start playing the video on the page, then reopen this popup.</p>
+  <script src="hls.js"></script>
+  <script src="net.js"></script>
+  <script src="popup.js"></script>
+</body>
+</html>

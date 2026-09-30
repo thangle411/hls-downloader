@@ -1,0 +1,36 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Downloading…</title>
+  <link rel="stylesheet" href="popup.css" />
+  <style>
+    body { width: auto; max-height: none; display: grid; place-items: center; min-height: 100vh; }
+    .panel { width: min(560px, 92vw); }
+    .bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin: 12px 0 6px; }
+    .bar > div { height: 100%; width: 0; background: var(--accent); transition: width 0.2s; }
+    #status { color: var(--muted); font-size: 12px; min-height: 1.4em; }
+    #log { color: var(--muted); font-size: 11px; white-space: pre-wrap; margin-top: 10px; max-height: 160px; overflow: auto; }
+    .row { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="panel card">
+    <div class="title" id="name"></div>
+    <div class="bar"><div id="progress"></div></div>
+    <div id="status">Preparing…</div>
+    <div class="row">
+      <button id="save" hidden>Save as…</button>
+      <button id="alt" class="ghost" hidden></button>
+      <button id="cancel" class="ghost">Cancel</button>
+    </div>
+    <div id="log"></div>
+  </div>
+  <script src="vendor/mux.min.js"></script>
+  <script src="hls.js"></script>
+  <script src="net.js"></script>
+  <script src="mp4.js"></script>
+  <script src="engine.js"></script>
+  <script src="downloader.js"></script>
+</body>
+</html>

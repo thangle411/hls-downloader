@@ -1,0 +1,85 @@
+:root {
+  --bg: #fff;
+  --fg: #1c1c1f;
+  --muted: #6b6b76;
+  --card: #f4f4f6;
+  --border: #e3e3e8;
+  --accent: #e5484d;
+  --accent-fg: #fff;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #18181b;
+    --fg: #ececf0;
+    --muted: #9a9aa5;
+    --card: #232328;
+    --border: #33333a;
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 400px;
+  max-height: 560px;
+  font: 13px/1.4 system-ui, -apple-system, sans-serif;
+  background: var(--bg);
+  color: var(--fg);
+}
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 12px;
+  border-bottom: 1px solid var(--border);
+}
+h1 { font-size: 14px; margin: 0; }
+main { padding: 8px; display: flex; flex-direction: column; gap: 8px; }
+#empty { color: var(--muted); text-align: center; padding: 24px 16px; margin: 0; }
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px;
+}
+.title { font-weight: 600; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.meta { color: var(--muted); font-size: 12px; margin: 2px 0 8px; }
+.url {
+  color: var(--muted);
+  font-size: 11px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  margin-bottom: 8px;
+}
+.tag {
+  display: inline-block;
+  font-size: 10px;
+  font-weight: 700;
+  padding: 1px 5px;
+  border-radius: 4px;
+  background: var(--accent);
+  color: var(--accent-fg);
+  margin-right: 6px;
+  vertical-align: 1px;
+}
+.row { display: flex; gap: 6px; align-items: center; }
+select {
+  flex: 1;
+  min-width: 0;
+  padding: 5px;
+  border-radius: 6px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--fg);
+}
+button {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 0;
+  background: var(--accent);
+  color: var(--accent-fg);
+  font-weight: 600;
+  cursor: pointer;
+}
+button.ghost { background: transparent; color: var(--muted); border: 1px solid var(--border); font-weight: 500; }
+button:disabled { opacity: 0.5; cursor: default; }

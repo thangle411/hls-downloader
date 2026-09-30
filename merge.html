@@ -1,0 +1,67 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Merge video and audio</title>
+  <link rel="stylesheet" href="popup.css" />
+  <style>
+    body { width: auto; max-height: none; display: grid; place-items: center; min-height: 100vh; padding: 16px 0; }
+    .panel { width: min(640px, 92vw); }
+    .meta { margin-bottom: 12px; }
+    label { display: block; margin: 10px 0 4px; font-weight: 600; }
+    input[type="file"] { width: 100%; color: var(--muted); }
+    video { width: 100%; margin-top: 12px; border-radius: 6px; background: #000; }
+    .offset { flex-wrap: wrap; }
+    .offset input {
+      width: 90px;
+      padding: 5px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+      background: var(--bg);
+      color: var(--fg);
+      font: inherit;
+      text-align: right;
+    }
+    .hint { color: var(--muted); font-size: 12px; margin-top: 4px; }
+    .bar { height: 8px; background: var(--border); border-radius: 4px; overflow: hidden; margin: 14px 0 6px; }
+    .bar > div { height: 100%; width: 0; background: var(--accent); transition: width 0.2s; }
+    #status { color: var(--muted); font-size: 12px; min-height: 1.4em; }
+    .row { margin-top: 12px; }
+  </style>
+</head>
+<body>
+  <div class="panel card">
+    <div class="title">Merge video and audio</div>
+    <div class="meta">Combines a video file and an audio file into one MP4 without re-encoding.</div>
+    <label for="video">Video file</label>
+    <input id="video" type="file" accept="video/*,.mp4,.m4v,.mov,.ts,.webm,.mkv" />
+    <label for="audio">Audio file</label>
+    <input id="audio" type="file" accept="audio/*,.m4a,.aac,.mp3,.ts,.mp4" />
+
+    <video id="preview" controls hidden></video>
+    <audio id="previewAudio" hidden></audio>
+
+    <label for="offset">Audio offset (ms)</label>
+    <div class="row offset">
+      <button class="ghost" data-nudge="-100">−100</button>
+      <button class="ghost" data-nudge="-10">−10</button>
+      <input id="offset" type="number" step="10" value="0" />
+      <button class="ghost" data-nudge="10">+10</button>
+      <button class="ghost" data-nudge="100">+100</button>
+      <button class="ghost" id="resetOffset">Reset</button>
+    </div>
+    <div class="hint">
+      Sound comes before the picture? Use a positive offset to delay the audio.
+      Sound lags behind? Use a negative offset. The preview above plays with the offset applied.
+    </div>
+
+    <div class="bar"><div id="progress"></div></div>
+    <div id="status">Choose both files.</div>
+    <div class="row">
+      <button id="merge" disabled>Merge and save as…</button>
+    </div>
+  </div>
+  <script src="hls.js"></script>
+  <script type="module" src="merge-page.js"></script>
+</body>
+</html>
